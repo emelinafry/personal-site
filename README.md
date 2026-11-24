@@ -15,7 +15,7 @@ No framework and no dependencies — just Node and one small server (`server.js`
 
 ## Run locally
 
-Requires Node 18 or newer.
+Requires Node 22.9 or newer.
 
 ```sh
 npm start
@@ -30,12 +30,29 @@ Without an API key the page works normally and the box says
 
 The server reads the OpenAI key from the `OPENAI_API_KEY` **environment
 variable**. It is used only on the server and is never sent to the browser.
-Do not put the key in a file in this repo.
+Never commit the key.
+
+The easiest way locally is a `.env.local` file. `npm start` loads it if it
+exists, and `.gitignore` keeps it out of git:
+
+```sh
+nano .env.local
+```
+
+Add one line, save, then run `npm start`:
+
+```
+OPENAI_API_KEY=your-key-here
+```
+
+Or set it in your shell instead:
 
 ```sh
 export OPENAI_API_KEY=your-key-here
 npm start
 ```
+
+A variable already set in the environment wins over `.env.local`.
 
 When deploying, set `OPENAI_API_KEY` in your host's environment/secrets
 settings instead.
